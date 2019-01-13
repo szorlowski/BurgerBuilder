@@ -33,7 +33,7 @@ class BurgerBuilder extends Component {
     const priceAddition = INGREDIENT_PRICES[type];
     const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice + priceAddition;
-    this.setState({totalPrice: newPrice, ingredients: updatedIngredients})
+    this.setState({totalPrice: newPrice, ingredients: updatedIngredients});
     this.updatePurchaseState(updatedIngredients);
   };
   removeIngredientHandler = type => {
@@ -103,7 +103,7 @@ class BurgerBuilder extends Component {
     let burger = this.state.error? <p>Ingredients cannot be loaded!</p> : <Spinner/>;
     if (this.state.ingredients) {
       burger = (
-        <React.Fragment>
+        <div>
           <Burger ingredients={this.state.ingredients}/>
           <BuildControls
             ingredientAdded={this.addIngredientHandler}
@@ -113,14 +113,14 @@ class BurgerBuilder extends Component {
             purchasable={this.state.purchasable}
             ordered={this.purchaseHandler}
           />
-        </React.Fragment>
+        </div>
       );
 
       orderSummary = <OrderSummary
         ingredients={this.state.ingredients}
         purchaseCancelled={this.purchaseCancelHandler}
         purchaseContinue={this.purchaseContinueHandler}
-        price={this.state.totalPrice}/>
+        price={this.state.totalPrice}/>;
 
       if (this.state.loading) {
         orderSummary = <Spinner/>
